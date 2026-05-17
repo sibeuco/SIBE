@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+    Configuración de Checkstyle para SIBE Backend.
+    Enfocada en detectar problemas de calidad reales sin bloquear el build
+    (ignoreFailures = true en build.gradle). Los reportes se generan en
+    build/reports/checkstyle/main.html.
+-->
+<module name="Checker">
+    <property name="severity" value="warning"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- Detectar archivos con líneas demasiado largas (>200 chars) -->
+    <module name="LineLength">
+        <property name="max" value="200"/>
+        <property name="severity" value="info"/>
+    </module>
+
+    <!-- Detectar archivos con tabs en lugar de espacios -->
+    <module name="FileTabCharacter">
+        <property name="severity" value="info"/>
+    </module>
+
+    <module name="TreeWalker">
+
+        <!-- ===== Imports ===== -->
+        <!-- Detectar imports no utilizados -->
+        <module name="UnusedImports"/>
+        <!-- Prohibir imports con wildcard (e.g. import java.util.*) -->
+        <module name="AvoidStarImport"/>
+        <!-- Prohibir import estático de clases completas -->
+        <module name="AvoidStaticImport">
+            <property name="excludes"
+                value="org.junit.jupiter.api.Assertions.*,org.mockito.Mockito.*,co.edu.uco.sibe.dominio.transversal.constante.SeguridadConstante.*,co.edu.uco.sibe.dominio.transversal.constante.MensajesErrorConstante.*"/>
+        </module>
+
+        <!-- ===== Bloques vacíos ===== -->
+        <!-- Detectar bloques catch vacíos -->
+        <module name="EmptyCatchBlock">
+            <property name="exceptionVariableName" value="ignore|expected"/>
+        </module>
+
+        <!-- ===== Errores comunes ===== -->
+        <!-- Detectar uso de == en lugar de equals para Strings -->
+        <module name="StringLiteralEquality"/>
+        <!-- Detectar return innecesario al final de void -->
+        <module name="UnnecessaryParentheses">
+            <property name="severity" value="info"/>
+        </module>
+        <!-- Detectar instanciación de Boolean, Integer, Long -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean,java.lang.Integer,java.lang.Long"/>
+        </module>
+
+        <!-- ===== Complejidad ===== -->
+        <!-- Alertar métodos con complejidad ciclomática > 15 -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="15"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ===== Convenciones de nombres (mínimas) ===== -->
+        <!-- Constantes deben ser UPPER_SNAKE_CASE -->
+        <module name="ConstantName"/>
+        <!-- Variables locales en camelCase -->
+        <module name="LocalVariableName"/>
+        <!-- Parámetros en camelCase -->
+        <module name="ParameterName"/>
+        <!-- Métodos en camelCase -->
+        <module name="MethodName"/>
+        <!-- Tipos (clases/interfaces) en PascalCase -->
+        <module name="TypeName"/>
+        <!-- Paquetes en minúsculas -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+
+        <!-- ===== Modificadores ===== -->
+        <!-- Orden estándar de modificadores -->
+        <module name="ModifierOrder"/>
+        <!-- Detectar modificadores redundantes en interfaces -->
+        <module name="RedundantModifier"/>
+
+        <!-- ===== Calidad general ===== -->
+        <!-- Detectar equals sin hashCode -->
+        <module name="EqualsHashCode"/>
+        <!-- Detectar inner assignments (a = b = c) -->
+        <module name="InnerAssignment"/>
+        <!-- Detectar comparaciones innecesarias con true/false -->
+        <module name="SimplifyBooleanExpression"/>
+        <!-- Detectar returns innecesarios con booleanos -->
+        <module name="SimplifyBooleanReturn"/>
+        <!-- Detectar clases que solo tienen static y no deberían ser instanciadas -->
+        <module name="HideUtilityClassConstructor"/>
+
+        <!-- Detectar System.out / System.err en código de producción -->
+        <module name="Regexp">
+            <property name="format" value="System\.(out|err)\.print"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="Usar el logger en lugar de System.out/System.err"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+    </module>
+</module>

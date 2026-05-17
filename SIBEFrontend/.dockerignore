@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Build output
+dist/
+
+# IDE
+.idea/
+.vscode/
+
+# Git
+.git/
+.gitignore
+
+# Tests y docs no necesarios en imagen
+coverage/
+README.md
+e2e/
+
+# Otros
+.editorconfig
+.browserslistrc

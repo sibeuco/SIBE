@@ -1,0 +1,22 @@
+# Build outputs
+build/
+bin/
+out/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Git
+.git/
+.gitignore
+
+# Gradle cache
+.gradle/
+
+# Docs y tests no necesarios en imagen
+README.md
