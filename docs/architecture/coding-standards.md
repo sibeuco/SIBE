@@ -4,7 +4,7 @@
 
 ### Propósito del Documento
 
-Este documento define los estándares de código obligatorios y recomendados para el desarrollo en SIBE (Sistema Integral de Bienestar Estudiantil). Estos estándares garantizan consistencia, legibilidad y mantenibilidad del código en todos los módulos del sistema.
+Este documento define los estándares de código obligatorios y recomendados para el desarrollo en SIBE (Sistema de información de Bienestar y Evangelización). Estos estándares garantizan consistencia, legibilidad y mantenibilidad del código en todos los módulos del sistema.
 
 **Audiencia**: Desarrolladores, Code Reviewers  
 **Última Actualización**: 2026-03-15  
@@ -1188,6 +1188,5 @@ tasks.named('test') {
 
 ---
 
-_Documento generado con Método Ceiba - Arquitecto_  
 _Última actualización: 2026-03-15_  
 _Versión: 1.0_
